@@ -3,7 +3,6 @@ package servlets;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +16,7 @@ public class MainServlet extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String kredyt = request.getParameter("kredyt");
 		String raty = request.getParameter("raty");
 		String oprocentowanie = request.getParameter("oprocentowanie");
@@ -34,6 +33,8 @@ public class MainServlet extends HttpServlet {
 			!isValid(rodzaj)
 		) {
 			response.sendRedirect("/");
+			
+			return;
 		}
 		
 		response.getWriter().println("<table><tbody>");
